@@ -1,10 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: #000000;
-  --color-secondary: #FFFFFF;
-  --color-accent: #3B82F6;
-  --color-background: #FFFFFF;
+  --nm-bg: #0b1020;
+  --nm-surface: rgba(255, 255, 255, 0.06);
+  --nm-surface-2: rgba(255, 255, 255, 0.09);
+  --nm-border: rgba(255, 255, 255, 0.16);
+  --nm-text: #e8f0ff;
+  --nm-muted: rgba(232, 240, 255, 0.72);
+  --nm-primary: #3b82f6;
+  --nm-success: #06b6d4;
+  --nm-danger: #ef4444;
+  --nm-glow: 0 0 18px rgba(59, 130, 246, 0.35);
+  --nm-radius: 14px;
 }
 
 * {
@@ -17,10 +24,375 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: var(--color-background);
-  color: var(--color-primary);
+  background:
+    radial-gradient(1000px 800px at 18% 12%, rgba(59, 130, 246, 0.18), transparent 55%),
+    radial-gradient(900px 700px at 80% 18%, rgba(6, 182, 212, 0.16), transparent 60%),
+    radial-gradient(1100px 900px at 35% 90%, rgba(99, 102, 241, 0.12), transparent 60%),
+    linear-gradient(180deg, #070a14, var(--nm-bg));
+  color: var(--nm-text);
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+/* --- NoteMaster UI --- */
+.nm-app {
+  min-height: 100vh;
+}
+
+.nm-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 18px;
+  border-bottom: 1px solid var(--nm-border);
+  background: linear-gradient(180deg, rgba(11, 16, 32, 0.92), rgba(11, 16, 32, 0.72));
+  backdrop-filter: blur(10px);
+}
+
+.nm-brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.nm-brandBadge {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #06101f;
+  background: linear-gradient(135deg, var(--nm-primary), var(--nm-success));
+  box-shadow: var(--nm-glow);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.nm-title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.nm-subtitle {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--nm-muted);
+}
+
+.nm-headerActions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.nm-kbd {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 8px;
+  border: 1px solid var(--nm-border);
+  background: rgba(255, 255, 255, 0.06);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 11px;
+}
+
+.nm-shell {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 18px;
+  padding: 18px;
+}
+
+.nm-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: calc(100vh - 110px);
+}
+
+.nm-panel {
+  border: 1px solid var(--nm-border);
+  border-radius: var(--nm-radius);
+  background: linear-gradient(180deg, var(--nm-surface), rgba(255, 255, 255, 0.03));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  padding: 14px;
+}
+
+.nm-panelTitle {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.nm-label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: var(--nm-muted);
+}
+
+.nm-input,
+.nm-textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--nm-border);
+  background: rgba(0, 0, 0, 0.28);
+  color: var(--nm-text);
+  padding: 10px 12px;
+  outline: none;
+}
+
+.nm-input:focus,
+.nm-textarea:focus {
+  border-color: rgba(59, 130, 246, 0.7);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+}
+
+.nm-inputTitle {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.nm-textarea {
+  min-height: 220px;
+  resize: vertical;
+  line-height: 1.4;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+.nm-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.nm-row .nm-input {
+  flex: 1;
+}
+
+.nm-btn {
+  border: 1px solid var(--nm-border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--nm-text);
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: transform 0.08s ease, background 0.12s ease, border-color 0.12s ease;
+}
+
+.nm-btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+.nm-btn:active {
+  transform: translateY(1px);
+}
+
+.nm-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.nm-btnSmall {
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.nm-btnPrimary {
+  border-color: rgba(59, 130, 246, 0.45);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(6, 182, 212, 0.16));
+  box-shadow: var(--nm-glow);
+}
+
+.nm-btnDanger {
+  border-color: rgba(239, 68, 68, 0.45);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(239, 68, 68, 0.10));
+}
+
+.nm-divider {
+  height: 1px;
+  background: var(--nm-border);
+  margin: 12px 0;
+}
+
+.nm-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.nm-chip {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--nm-border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--nm-text);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.nm-chip.isActive {
+  border-color: rgba(6, 182, 212, 0.65);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.16);
+}
+
+.nm-listHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 4px;
+}
+
+.nm-listTitle {
+  font-weight: 800;
+}
+
+.nm-pill {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--nm-border);
+  font-size: 12px;
+  color: var(--nm-muted);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nm-list {
+  border: 1px solid var(--nm-border);
+  border-radius: var(--nm-radius);
+  background: linear-gradient(180deg, var(--nm-surface), rgba(255, 255, 255, 0.03));
+  overflow: hidden;
+  flex: 1;
+}
+
+.nm-noteCard {
+  width: 100%;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  padding: 12px 12px;
+  background: transparent;
+  color: var(--nm-text);
+  cursor: pointer;
+}
+
+.nm-noteCard:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.nm-noteCard.isSelected {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.20), rgba(6, 182, 212, 0.12));
+  box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.35);
+}
+
+.nm-noteCardTitle {
+  font-weight: 800;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.nm-noteCardMeta {
+  font-size: 12px;
+  color: var(--nm-muted);
+}
+
+.nm-main {
+  min-height: calc(100vh - 110px);
+}
+
+.nm-editor {
+  height: 100%;
+  border: 1px solid var(--nm-border);
+  border-radius: var(--nm-radius);
+  background: linear-gradient(180deg, var(--nm-surface), rgba(255, 255, 255, 0.03));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nm-editorRow {
+  display: block;
+}
+
+.nm-editorGrow {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.nm-editorGrow .nm-textarea {
+  flex: 1;
+  min-height: 280px;
+}
+
+.nm-statusBar {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.18);
+}
+
+.nm-muted {
+  color: var(--nm-muted);
+  font-size: 12px;
+}
+
+.nm-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+.nm-empty,
+.nm-emptyMain {
+  padding: 18px;
+}
+
+.nm-emptyTitle {
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.nm-alert {
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  background: rgba(239, 68, 68, 0.12);
+  border-radius: 14px;
+  padding: 12px 12px;
+}
+
+.nm-alertTitle {
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+
+.nm-alertBody {
+  color: var(--nm-muted);
+  font-size: 13px;
+}
+
+@media (max-width: 980px) {
+  .nm-shell {
+    grid-template-columns: 1fr;
+  }
+  .nm-sidebar {
+    min-height: auto;
+  }
+  .nm-main {
+    min-height: auto;
+  }
 }
